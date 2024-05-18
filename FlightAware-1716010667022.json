@@ -1,0 +1,1519 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "For the flight aware demo\n",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 15,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 50
+              },
+              {
+                "color": "#EAB839",
+                "value": 100
+              },
+              {
+                "color": "dark-purple",
+                "value": 150
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 14,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "altitude",
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Altitude",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "fit",
+          "lat": 0,
+          "lon": 0,
+          "padding": 20,
+          "zoom": 10
+        }
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"latitude\", \"longitude\", \"altitude\", \"ident\", \"origin_name\", \"destination_name\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo GROUP BY \"latitude\", \"longitude\", \"altitude\", \"ident\", \"origin_name\", \"destination_name\" ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "latitude",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "longitude",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "altitude",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "ident",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "origin_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "destination_name",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "latitude",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "longitude",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "altitude",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "ident",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "origin_name",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              },
+              {
+                "property": {
+                  "name": "destination_name",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "whereJsonTree": {
+              "children1": [],
+              "id": "98b9ba9a-0123-4456-b89a-b18e53c2c3ca",
+              "type": "group"
+            }
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Planes in the area",
+      "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 14,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT DISTINCT aircraft_type\nFROM flight",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "aircraft_type",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "whereJsonTree": {
+              "children1": [],
+              "id": "a8bb9899-0123-4456-b89a-b18f7a959cd2",
+              "type": "group"
+            }
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Aircraft Types",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 17,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"destination_city\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo GROUP BY \"destination_city\" ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "destination_city",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "destination_city",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Destination Cities",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 20,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"origin_city\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo GROUP BY \"origin_city\" ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "origin_city",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "origin_city",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Origin Cities",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 14,
+        "y": 7
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT AVG(\"altitude\") FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "altitude",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Average Altitude",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 17,
+        "y": 7
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"ident\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo GROUP BY \"ident\" ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "ident",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "ident",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Flights in the air",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 20,
+        "y": 7
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT AVG(\"groundspeed\") FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "groundspeed",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Average Ground Speed",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 14,
+        "y": 11
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"groundspeed\", \"time\", \"ident\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "groundspeed",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "time",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              },
+              {
+                "parameters": [
+                  {
+                    "name": "ident",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": []
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Airline Ground Speed",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "ident"
+            ],
+            "keepFields": false,
+            "naming": {
+              "asLabels": false
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 14,
+        "x": 0,
+        "y": 15
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.1.0-68838",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT COUNT(DISTINCT ident) AS AmericanAirlines\nFROM flight\nWHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo \nAND ident LIKE '%AAL%';",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          }
+        },
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT COUNT(DISTINCT ident) AS United\nFROM flight\nWHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo \nAND ident LIKE '%UAL%';",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          }
+        },
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT COUNT(DISTINCT ident) AS Delta\nFROM flight\nWHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo \nAND ident LIKE '%DAL%';",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          }
+        },
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT COUNT(DISTINCT ident) AS Southwest\nFROM flight\nWHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo \nAND ident LIKE '%SWA%';",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          }
+        },
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "SELECT COUNT(DISTINCT ident) AS Frontier\nFROM flight\nWHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo \nAND ident LIKE '%FFT%';",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Major Airlines",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 14,
+        "y": 19
+      },
+      "id": 4,
+      "options": {
+        "displayMode": "lcd",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "text"
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  time,\n  altitude,\n  ident\nFROM flight\nWHERE\n  \"time\" >= $__timeFrom() AND \"time\" <= $__timeTo()\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Current Flights Altitudes",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "ident"
+            ],
+            "keepFields": true,
+            "naming": {
+              "asLabels": false
+            }
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 23
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"origin_city\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo AND aircraft_type='$AircraftType' GROUP BY \"origin_city\" ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "origin_city",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "origin_city",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Origin Cities For Specific Aircraft Type",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "adhpiadu96874e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 23
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.1.0-70724",
+      "targets": [
+        {
+          "dataset": "iox",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "adhpiadu96874e"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \"origin_city\",\"destination_city\" FROM \"flight\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo AND ident='$String' GROUP BY \"origin_city\", \"destination_city\" ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "origin_city",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "name": "origin_city",
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ]
+          },
+          "table": "flight"
+        }
+      ],
+      "title": "Search Flights VIA Ident String",
+      "type": "table"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "B739",
+          "value": "B739"
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "adhpiadu96874e"
+        },
+        "definition": "SELECT DISTINCT aircraft_type FROM flight",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "AircraftType",
+        "options": [],
+        "query": "SELECT DISTINCT aircraft_type FROM flight",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "hide": 0,
+        "name": "String",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timeRangeUpdatedDuringEditOrView": false,
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "FlightAware",
+  "uid": "cdhpjhpe5ro5cf",
+  "version": 19,
+  "weekStart": ""
+}
