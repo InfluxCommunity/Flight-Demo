@@ -37,3 +37,7 @@ The script runs in an infinite loop, fetching flight data every 5 minutes, you c
 1. Change the open sky API to be the new influxdb v3 python library instead of v2. 
 2. Submit this project to flight aware so they can use it as an example
 3. Attach all the youtube video into this read me. 
+4. Add instructions on how to run this on github actions
+5. Add real test files
+6. Find a good way to save and use the way points. 
+7. Create other front ends for the project in superset, etc. 
